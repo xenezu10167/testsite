@@ -104,7 +104,6 @@
 
   <button id="noBtn" aria-label="Forgive me No">No</button>
 
-  <!-- Your sound file -->
   <audio id="yesSound" src="Thankyoumeme.mp3" preload="auto"></audio>
 
 <script>
@@ -157,12 +156,12 @@
     const y = Math.round(minY + Math.random() * (maxY - minY));
     return {x, y};
   }
-
+  
   function moveNoRandomly() {
     const p = randomViewportPosition(12);
     setNoPos(p.x, p.y);
   }
-
+  
   function moveAwayFromPointer(ev) {
     const vw = window.innerWidth; const vh = window.innerHeight;
     const rect = noBtn.getBoundingClientRect();
@@ -234,10 +233,13 @@
     yesBtn.style.transition = 'transform 220ms cubic-bezier(.2,.9,.3,1)';
     setTimeout(()=> { yesBtn.style.transform = ''; }, 260);
 
-    // Play your sound file
     const audio = document.getElementById('yesSound');
-    audio.currentTime = 0; // restart if clicked quickly
+    audio.currentTime = 0; 
     audio.play();
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, 5000);
   });
 
   window.addEventListener('resize', () => {
@@ -259,3 +261,5 @@
 </script>
 </body>
 </html>
+</html>
+
